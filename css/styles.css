@@ -1,0 +1,321 @@
+/** CSS Reset 
+ ** Grace Snow's combination of resets by Andy Bell and Josh Comeau
+ ** See https://andy-bell.co.uk/a-modern-css-reset/
+ ** and https://www.joshwcomeau.com/css/custom-css-reset/
+ ** for more a deeper understanding.
+ */
+/* 1. use :where() to lower specificity */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins */
+* {
+  margin: 0;
+}
+
+/* Height 100% on both html AND body can be buggy */
+html {
+  height: 100%;
+}
+
+/* Make sure body stretches to the full viewport height */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  line-height: 1.6;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+/** 1 */
+:where(ul[role=list]),
+:where(ol[role=list]) {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+/** 1 */
+:where(a:not([class])) {
+  text-decoration: underline;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Consistant image sizing */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Make non-inheriting elements inherit font styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Needs review! I don't like this in a general reset */
+/* p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+} */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.15;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* isolate stacking context in React/Next */
+#root,
+#__next {
+  isolation: isolate;
+  min-height: inherit;
+}
+
+/* Variables */
+/* Utilites */
+.visually-hidden {
+  display: inline-block;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1;
+  width: 1;
+  margin: -1;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY */
+body {
+  font-size: 0.875rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  color: hsl(243, 100%, 93%);
+  background-image: url("/images/bg-mobile.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  body {
+    background-color: hsl(229, 57%, 11%);
+    background-image: url("/images/bg-desktop.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+  }
+}
+/* MAIN */
+.main-container {
+  display: grid;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .main-container {
+    display: flex;
+    gap: 2rem;
+  }
+}
+.menu {
+  background-color: hsl(228, 56%, 26%);
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+  border-radius: 0.5rem 6rem 0.5rem 0.5rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .menu {
+    padding: 2rem 8rem 2rem 2rem;
+  }
+}
+.icon-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon-link {
+  background-color: hsl(229, 57%, 11%);
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+.storage {
+  background-color: hsl(228, 56%, 26%);
+  padding: 2rem 2rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .storage {
+    padding: 2.5rem;
+  }
+}
+.storage-meter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .storage-meter {
+    align-items: flex-start;
+  }
+}
+.storage-meter[value] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 16rem;
+  height: 1.25rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .storage-meter[value] {
+    width: 30rem;
+  }
+}
+.storage-meter[value]::-webkit-progress-bar {
+  background-color: hsl(229, 57%, 11%);
+  border-radius: 1rem;
+}
+
+.storage-meter[value]::-webkit-progress-value {
+  background-image: linear-gradient(to right, hsl(6, 100%, 80%), hsl(335, 100%, 65%));
+  border-radius: 1rem;
+  border: 0.2rem solid hsl(229, 57%, 11%);
+}
+
+.storage-meter[value]::-webkit-progress-value::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  border-radius: 100%;
+  right: 7px;
+  top: 7px;
+  background-color: white;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+}
+
+.additional-labels {
+  display: flex;
+  gap: 10rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .additional-labels {
+    gap: 25rem;
+  }
+}
+.minmax-numbers {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.absolute-container {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.25em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .absolute-container {
+    top: -3rem;
+    left: 21rem;
+  }
+}
+@media screen and (min-width: 62.5rem) {
+  .absolute-container::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 2rem solid white;
+    border-left: 2rem solid transparent;
+    position: absolute;
+    top: 3.5rem;
+    right: 0;
+  }
+}
+.storage-left {
+  color: hsl(229, 7%, 55%);
+  text-transform: uppercase;
+}
+
+.bold-number {
+  font-size: 2.5rem;
+  color: hsl(229, 57%, 11%);
+}
+
+/* FOOTER */
+.attribution {
+  font-size: 0.786rem;
+  text-align: center;
+}
+
+.attribution-link {
+  color: hsl(228, 45%, 44%);
+}/*# sourceMappingURL=styles.css.map */

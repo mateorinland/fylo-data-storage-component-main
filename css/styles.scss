@@ -1,0 +1,233 @@
+@import "reset";
+
+/* Variables */
+
+$GradientStart: hsl(6, 100%, 80%);
+$GradientEnd: hsl(335, 100%, 65%);
+$Pale_Blue: hsl(243, 100%, 93%);
+$Grayish_Blue: hsl(229, 7%, 55%);
+$Dark_Blue: hsl(228, 56%, 26%);
+$Very_Dark_Blue: hsl(229, 57%, 11%);
+
+/* Utilites */
+
+.visually-hidden {
+  display: inline-block;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1;
+  width: 1;
+  margin: -1;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY */
+
+body {
+  font-size: 0.875rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  color: $Pale_Blue;
+  background-image: url("/images/bg-mobile.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+    body {
+        background-color: $Very_Dark_Blue;
+        background-image: url("/images/bg-desktop.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom;
+    }
+}
+
+/* MAIN */
+
+.main-container {
+    display: grid;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+    .main-container {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+.menu {
+    background-color: $Dark_Blue;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+    border-radius: 0.5rem 6rem 0.5rem 0.5rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+    .menu {
+        padding: 2rem 8rem 2rem 2rem;
+    }
+}
+
+.icon-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.icon-link {
+    background-color: $Very_Dark_Blue;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.storage {
+    background-color: $Dark_Blue;
+    padding: 2rem 2rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+@media screen and (min-width: 62.5rem) {
+    .storage {
+        padding: 2.5rem;
+    }
+}
+
+.storage-meter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+    .storage-meter {
+        align-items:flex-start;
+    }
+}
+
+.storage-meter[value] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16rem;
+    height: 1.25rem;
+  }
+
+  @media screen and (min-width: 62.5rem) {
+    .storage-meter[value] {
+        width: 30rem;
+      }
+  }
+
+  .storage-meter[value]::-webkit-progress-bar {
+    background-color: $Very_Dark_Blue;
+    border-radius: 1rem;
+  }
+
+  .storage-meter[value]::-webkit-progress-value {
+    background-image: linear-gradient(to right, $GradientStart, $GradientEnd);
+    border-radius: 1rem;
+    border: 0.2rem solid $Very_Dark_Blue;
+  }
+
+  .storage-meter[value]::-webkit-progress-value::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    border-radius: 100%;
+    right: 7px;
+    top: 7px;
+    background-color: white;
+  }
+
+  .progress-label {
+    font-size: 0.85rem;
+  }
+
+.additional-labels {
+    display: flex;
+    gap: 10rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+    .additional-labels {
+        gap: 25rem;
+    }
+}
+
+.minmax-numbers {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.absolute-container {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.25em 2em;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    position: absolute;
+    top: 8rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+    .absolute-container {
+        top: -3rem;
+        left: 21rem;
+    }
+}
+
+@media screen and (min-width: 62.5rem) {
+    .absolute-container::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 2rem solid white;
+        border-left: 2rem solid transparent;
+        position: absolute;
+        top: 3.5rem;
+        right: 0;
+    }
+}
+
+.storage-left {
+    color: $Grayish_Blue;
+    text-transform: uppercase;
+}
+
+.bold-number {
+    font-size: 2.5rem;
+    color: $Very_Dark_Blue;
+}
+
+/* FOOTER */
+
+.attribution {
+  font-size: 0.786rem;
+  text-align: center;
+}
+
+.attribution-link {
+  color: hsl(228, 45%, 44%);
+}
